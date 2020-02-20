@@ -1,0 +1,5 @@
+# For all options see https://github.com/bbatsov/rubocop/tree/master/config
+
+inherit_gem:
+  gc_ruboconfig: rubocop.yml
+
