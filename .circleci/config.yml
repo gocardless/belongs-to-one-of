@@ -4,25 +4,88 @@
 #
 # Refer to CircleCI's configuration reference to build on:
 # https://circleci.com/docs/2.0/configuration-reference/
-
 version: 2
 
+references:
+  steps: &steps
+    - checkout
+
+    - run: gem install bundler -v 2.1.4
+    - run: bundle install
+
+    - type: shell
+      command: |
+        bundle exec rspec --profile 10 \
+                          --format RspecJunitFormatter \
+                          --out /tmp/test-results/rspec.xml \
+                          --format progress \
+                          spec
+    - type: store_test_results
+      path: /tmp/test-results
+
 jobs:
-  make me a baguette:
+  ruby24-rails52:
     docker:
-      - image: circleci/ruby:latest
+      - image: ruby:2.4
+        environment:
+          - RAILS_VERSION=5.2
+    steps: *steps
+  ruby25-rails52:
+    docker:
+      - image: ruby:2.5
+        environment:
+          - RAILS_VERSION=5.2
+    steps: *steps
+  ruby25-rails60:
+    docker:
+      - image: ruby:2.5
+        environment:
+          - RAILS_VERSION=6.0
+    steps: *steps
+  ruby26-rails52:
+    docker:
+      - image: ruby:2.6
+        environment:
+          - RAILS_VERSION=5.2
+    steps: *steps
+  ruby26-rails60:
+    docker:
+      - image: ruby:2.6
+        environment:
+          - RAILS_VERSION=6.0
+    steps: *steps
+  ruby27-rails52:
+    docker:
+      - image: ruby:2.7
+        environment:
+          - RAILS_VERSION=5.2
+    steps: *steps
+  ruby27-rails60:
+    docker:
+      - image: ruby:2.7
+        environment:
+          - RAILS_VERSION=6.0
+    steps: *steps
+  rubocop:
+    docker:
+      - image: ruby:2.5
     steps:
-      - add_ssh_keys
       - checkout
+      - run: gem install bundler -v 2.1.4
+      - run: bundle install
       - run:
-          command: |
-            set +x
-            git clone git@github.com:gocardless/healthcheck.git || \
-            echo "Something went wrong, please let Developer Enablement know"
-            echo "Everything seems to be hooked-up properly. Here's a baguette!"
+          name: Rubocop
+          command: bundle exec rubocop --parallel --extra-details --display-style-guide
 
 workflows:
   version: 2
-  make me a baguette:
+  tests:
     jobs:
-    - make me a baguette
+      - ruby24-rails52
+      - ruby25-rails52
+      - ruby25-rails60
+      - ruby26-rails52
+      - ruby26-rails60
+      - ruby27-rails52
+      - ruby27-rails60
+      - rubocop
