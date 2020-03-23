@@ -2,7 +2,9 @@
 
 source "https://rubygems.org"
 
-group :development, :test do
-  gem "gc_ruboconfig", "~> 2.9"
-  gem "rubocop", require: false
-end
+gemspec
+
+gem "activerecord", "~> #{ENV['RAILS_VERSION']}" if ENV["RAILS_VERSION"]
+
+# TODO: remove
+gem 'pry-byebug'
