@@ -7,7 +7,8 @@ RSpec.shared_examples "belongs to at most one organisation" do
 
   context "when organisation is specified correctly" do
     it "does not throw error" do
-      expect(competitor.errors[:base]).to_not include("model must belong to at most one organisation")
+      expect(competitor.errors[:base]).
+        to_not include("model must belong to at most one organisation")
     end
   end
 
@@ -15,7 +16,8 @@ RSpec.shared_examples "belongs to at most one organisation" do
     let(:params) { { name: "Joe Bloggs" } }
 
     it "does not throw error" do
-      expect(competitor.errors[:base]).to_not include("model must belong to at most one organisation")
+      expect(competitor.errors[:base]).
+        to_not include("model must belong to at most one organisation")
     end
   end
 
@@ -23,7 +25,8 @@ RSpec.shared_examples "belongs to at most one organisation" do
     let(:params) { { name: "Joe Bloggs", school: school, college: college } }
 
     it "throws error" do
-      expect(competitor.errors[:base]).to include("model must belong to at most one organisation")
+      expect(competitor.errors[:base]).
+        to include("model must belong to at most one organisation")
     end
   end
 end

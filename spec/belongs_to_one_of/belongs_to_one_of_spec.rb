@@ -6,7 +6,7 @@ require_relative "../support/shared_examples/setters"
 require_relative "../support/shared_examples/getters"
 require_relative "../support/shared_examples/validators/belongs_to_exactly_one"
 require_relative "../support/shared_examples/validators/belongs_to_at_most_one"
-require_relative "../support/shared_examples/validators/organisation_type_matches_organisation"
+require_relative "../support/shared_examples/validators/organisation_type_matches_organisation" # rubocop:disable Metrics/LineLength
 require "pry-byebug"
 
 RSpec.context "Belongs to one of" do
@@ -15,7 +15,8 @@ RSpec.context "Belongs to one of" do
       self.table_name = :competitors
       belongs_to_one_of :organisation, %i[college school]
 
-      # we need to define this so that activerecord doesn't explode when it tries to associate another model
+      # we need to define this so that activerecord doesn't explode
+      # when it tries to associate another model
       def self.name
         "competitor"
       end
@@ -46,7 +47,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_exactly_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -64,7 +64,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_at_most_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -79,9 +78,9 @@ RSpec.context "Belongs to one of" do
     let(:competitor_klass) do
       Class.new(ActiveRecord::Base) do
         self.table_name = :competitors
-        belongs_to_one_of :organisation, { college: :my_college_id, school: :my_school_id }
+        belongs_to_one_of :organisation,
+                          { college: :my_college_id, school: :my_school_id }
 
-        # we need to define this so that activerecord doesn't explode when it tries to associate another model
         def self.name
           "competitor"
         end
@@ -105,7 +104,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_exactly_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -123,7 +121,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_at_most_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -140,7 +137,6 @@ RSpec.context "Belongs to one of" do
         self.table_name = :competitors
         belongs_to_one_of :organisation, %i[college school], include_type_column: true
 
-        # we need to define this so that activerecord doesn't explode when it tries to associate another model
         def self.name
           "competitor"
         end
@@ -164,7 +160,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_exactly_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -182,7 +177,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_at_most_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -200,7 +194,6 @@ RSpec.context "Belongs to one of" do
 
           validate :organisation_type_matches_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -215,9 +208,9 @@ RSpec.context "Belongs to one of" do
     let(:competitor_klass) do
       Class.new(ActiveRecord::Base) do
         self.table_name = :competitors
-        belongs_to_one_of :organisation, %i[college school], include_type_column: :my_organisation_type
+        belongs_to_one_of :organisation, %i[college school],
+                          include_type_column: :my_organisation_type
 
-        # we need to define this so that activerecord doesn't explode when it tries to associate another model
         def self.name
           "competitor"
         end
@@ -241,7 +234,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_exactly_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -259,7 +251,6 @@ RSpec.context "Belongs to one of" do
 
           validate :belongs_to_at_most_one_organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -277,7 +268,6 @@ RSpec.context "Belongs to one of" do
           self.table_name = :competitors
           belongs_to_one_of :organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -295,7 +285,6 @@ RSpec.context "Belongs to one of" do
           self.table_name = :competitors
           belongs_to_one_of %i[college school], :organisation
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -303,7 +292,8 @@ RSpec.context "Belongs to one of" do
       end
 
       it "throws an error" do
-        expect { competitor.save! }.to raise_error BelongsToOneOf::BelongsToOneOfModel::InvalidParamsException
+        expect { competitor.save! }.
+          to raise_error BelongsToOneOf::BelongsToOneOfModel::InvalidParamsException
       end
     end
 
@@ -311,9 +301,9 @@ RSpec.context "Belongs to one of" do
       let(:competitor_klass) do
         Class.new(ActiveRecord::Base) do
           self.table_name = :competitors
-          belongs_to_one_of :organisation, { school: :not_a_school_id, college: :college_id }
+          belongs_to_one_of :organisation,
+                            { school: :not_a_school_id, college: :college_id }
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -329,9 +319,9 @@ RSpec.context "Belongs to one of" do
       let(:competitor_klass) do
         Class.new(ActiveRecord::Base) do
           self.table_name = :competitors
-          belongs_to_one_of :organisation, %i[college school], include_type_column: :not_a_column
+          belongs_to_one_of :organisation, %i[college school],
+                            include_type_column: :not_a_column
 
-          # we need to define this so that activerecord doesn't explode when it tries to associate another model
           def self.name
             "competitor"
           end
@@ -350,7 +340,6 @@ RSpec.context "Belongs to one of" do
         self.table_name = :competitors
         belongs_to_one_of :organisation, %i[college school]
 
-        # we need to define this so that activerecord doesn't explode when it tries to associate another model
         def self.name
           "competitor"
         end
