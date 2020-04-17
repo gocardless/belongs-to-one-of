@@ -1,10 +1,20 @@
 # belongs_to_one_of
 Gem to support activemodel relations where one model can be a child of one of many models.
+In our examples, we will be targeting a class `Competitor` which can either belong to a `School` or a `College`.
+We will consider this more general concept an `organisation`.
+
+The gem provides a simple method to declare this relationship, some validators to enforce the relationships,
+and some helper functions to safely set and get the associated model.
+
+## What about rails polymorphic relations?
+
 Unlike rails polymorphic relations, this supports having a separate `id` column for each parent 
 model type (e.g. `school_id` and `college_id` instead of just `organisation_id`). This is desirable
 (in some cases) to enable the database to use foreign keys.
+
 The gem will also error if you try to set a resource which isn't one of the specified classes, unlike
 a rails polymorphic relation which will accept any model class.
+
 
 ## Installation
 
@@ -19,9 +29,6 @@ gem 'belongs_to_one_of'
 ```
 
 ## Quick Start
-
-In our examples, we will be targeting a class `Competitor` which can either belong to a `School` or a `College`.
-We will consider this more general concept an `organisation`.
 
 Our code will say:
 
