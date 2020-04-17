@@ -54,7 +54,7 @@ module BelongsToOneOf
     def resource_setter(resource, model)
       return if resource.nil?
 
-      possible_resource_types.keys.each do |resource_type|
+      possible_resource_types.each_key do |resource_type|
         model.public_send("#{resource_type}=", nil)
       end
 
