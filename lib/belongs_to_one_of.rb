@@ -4,17 +4,32 @@ require "active_record"
 require "active_record/associations"
 require_relative "belongs_to_one_of/belongs_to_one_of_model"
 
-# We assume that the connected model is called a 'resource', for the purposes of naming variables in this file
+# We assume that the connected model is called a 'resource',
+# for the purposes of naming variables in this file
 
 module ActiveRecord
   module Associations
     module ClassMethods
       include BelongsToOneOf
 
-      def belongs_to_one_of(resource_key, raw_possible_resource_types, include_type_column: false)
-        resource_type_field = [true, false].include?(include_type_column) ? "#{resource_key}_type" : include_type_column
+      def belongs_to_one_of(
+        resource_key,
+        raw_possible_resource_types,
+        include_type_column: false
+      )
+        resource_type_field = "#{resource_key}_type"
+        unless [true, false].include?(include_type_column)
+          resource_type_field =
+            include_type_column
+        end
 
-        config_model = BelongsToOneOfModel.new(resource_key, raw_possible_resource_types, include_type_column, resource_type_field, self)
+        config_model = BelongsToOneOfModel.new(
+          resource_key,
+          raw_possible_resource_types,
+          include_type_column,
+          resource_type_field,
+          self,
+        )
 
         # validators
         define_method "belongs_to_exactly_one_#{resource_key}" do

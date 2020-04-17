@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "responds to getters" do |resource_type_field = "organisation_type", school_id_field = "school_id"|
+RSpec.shared_examples "responds to getters" do
+|resource_type_field = "organisation_type", school_id_field = "school_id"|
   subject(:competitor) { competitor_klass.create(params) }
 
   let(:params) { { name: "Joe Bloggs", organisation: school } }
