@@ -111,8 +111,17 @@ module BelongsToOneOf
 
     def initialize_associations
       possible_resource_types.each do |resource_type_accessor, resource_id_column|
-        model_class.belongs_to resource_type_accessor, foreign_key: resource_id_column,
-                                                       optional: true
+        opts = { optional: true }
+
+        # Only set :foreign_key for a complex relation. Simple relations can be safely
+        # "inflected" (i.e. Rails knows these objects are the same...)
+        #   foo = Foo.find(1)
+        #   foo.bar.foo == foo
+        if resource_id_column.to_s.gsub!(/_id$/, "") != resource_type_accessor.to_s
+          opts[:foreign_key] = resource_id_column
+        end
+
+        model_class.belongs_to resource_type_accessor, opts
       end
     end
 
