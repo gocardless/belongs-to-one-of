@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["GoCardless Engineering"]
   spec.email         = ["engineering@gocardless.com"]
 
-  spec.summary       = "A small library that helps with models which can have multiple parent model types" # rubocop:disable Metrics/LineLength
+  spec.summary       = "A small library that helps with models which can have " \
+                       "multiple parent model types"
   spec.homepage      = "https://github.com/gocardless/belongs_to_one_of"
   spec.license       = "MIT"
 
@@ -25,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.4"
 
   spec.add_development_dependency "bundler", "~> 2.1.4"
-  spec.add_development_dependency "gc_ruboconfig", "~> 2.10.0"
+  spec.add_development_dependency "gc_ruboconfig", "~> 2.14.0"
   spec.add_development_dependency "rspec", "~> 3.9"
   spec.add_development_dependency "rspec_junit_formatter", "~> 0.4"
 
