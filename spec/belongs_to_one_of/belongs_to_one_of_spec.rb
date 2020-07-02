@@ -6,7 +6,7 @@ require_relative "../support/shared_examples/setters"
 require_relative "../support/shared_examples/getters"
 require_relative "../support/shared_examples/validators/belongs_to_exactly_one"
 require_relative "../support/shared_examples/validators/belongs_to_at_most_one"
-require_relative "../support/shared_examples/validators/organisation_type_matches_organisation" # rubocop:disable Metrics/LineLength
+require_relative "../support/shared_examples/validators/organisation_type_matches_organisation" # rubocop:disable Layout/LineLength
 require "pry-byebug"
 
 RSpec.context "Belongs to one of" do
@@ -38,6 +38,11 @@ RSpec.context "Belongs to one of" do
     it_behaves_like "responds to setters"
 
     it_behaves_like "responds to getters"
+
+    it "doesn't set the foreign_key on the relation" do
+      college = competitor_klass.reflect_on_association(:college)
+      expect(college.options).to_not have_key(:foreign_key)
+    end
 
     context "and has belongs_to_exactly_one validator" do
       let(:competitor_klass) do
@@ -95,6 +100,11 @@ RSpec.context "Belongs to one of" do
     it_behaves_like "responds to setters", "my_school_id"
 
     it_behaves_like "responds to getters", "organisation_type", "my_school_id"
+
+    it "configures a foreign_key on the relation" do
+      college = competitor_klass.reflect_on_association(:college)
+      expect(college.options).to include(foreign_key: :my_college_id)
+    end
 
     context "and has belongs_to_exactly_one validator" do
       let(:competitor_klass) do
