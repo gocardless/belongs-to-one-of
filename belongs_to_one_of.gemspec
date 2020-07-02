@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["GoCardless Engineering"]
   spec.email         = ["engineering@gocardless.com"]
 
-  spec.summary       = "A small library that helps with models which can have multiple parent model types" # rubocop:disable Metrics/LineLength
+  spec.summary       = "A small library that helps with models which can have " \
+                       "multiple parent model types"
   spec.homepage      = "https://github.com/gocardless/belongs_to_one_of"
   spec.license       = "MIT"
 
