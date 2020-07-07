@@ -121,7 +121,7 @@ module BelongsToOneOf
           opts[:foreign_key] = resource_id_column
         end
 
-        model_class.belongs_to resource_type_accessor, opts
+        model_class.belongs_to(resource_type_accessor, **opts)
       end
     end
 
