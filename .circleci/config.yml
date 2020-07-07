@@ -68,7 +68,7 @@ jobs:
     steps: *steps
   rubocop:
     docker:
-      - image: ruby:2.5
+      - image: ruby:2.7
     steps:
       - checkout
       - run: gem install bundler -v 2.1.4
