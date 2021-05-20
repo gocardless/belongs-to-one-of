@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A small library that helps with models which can have " \
                        "multiple parent model types"
-  spec.homepage      = "https://github.com/gocardless/belongs_to_one_of"
+  spec.homepage      = "https://github.com/gocardless/belongs-to-one-of"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.
@@ -23,10 +23,11 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.4"
+  spec.required_ruby_version = ">= 2.6"
 
-  spec.add_development_dependency "bundler", "~> 2.1.4"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "gc_ruboconfig", "~> 2.25.0"
+  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec", "~> 3.9"
   spec.add_development_dependency "rspec_junit_formatter", "~> 0.4"
 
