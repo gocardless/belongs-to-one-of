@@ -112,7 +112,7 @@ my_competitor.organisation_id
 ``` 
 
 #### `[organisation]_type`
-This is only set when the relation is not `include_type_column` (see below). This allows you to access the resource type via
+This is only set when the associations are configured with `include_type_column` (see below). This allows you to access the resource type via
 `.organisation_type` e.g.:
 ```ruby
 my_competitor.organisation_type
@@ -155,7 +155,7 @@ if the column is not called `[organisation]_type`, you can specify the column na
 
 ### `type_column_value`
 
-If you have `include_type_column:true` set, by default we assume you want to store the classname in the db.
+If you have `include_type_column: true` set, by default we assume you want to store the classname in the db.
 However, there may be some logic that you want to apply. If you pass a Proc to `type_column_value` 
 you can add your own logic to determine what goes into the db.
 
