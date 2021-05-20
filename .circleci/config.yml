@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
 
-      - run: gem install bundler -v 2.1.4
+      - run: gem install bundler
       - run: bundle install
 
       - run: |
@@ -45,11 +45,9 @@ workflows:
       - test:
           matrix:
             parameters:
-              ruby-version: ["2.4", "2.5", "2.6", "2.7"]
+              ruby-version: ["2.6", "2.7", "3.0"]
               rails-version: ["5.2", "6.0", "6.1"]
             exclude:
-              - ruby-version: "2.4"
-                rails-version: "6.0"
-              - ruby-version: "2.4"
-                rails-version: "6.1"
+              - ruby-version: "3.0"
+                rails-version: "5.2"
       - rubocop
