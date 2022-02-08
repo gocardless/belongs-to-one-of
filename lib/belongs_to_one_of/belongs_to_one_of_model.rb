@@ -63,8 +63,8 @@ module BelongsToOneOf
 
       unless resource_type_accessor
         message = "one of #{possible_resource_types.keys.join(', ')} expected, "\
-              "got #{resource.inspect} which is an instance of "\
-"#{resource.class}(##{resource.class.object_id})"
+                  "got #{resource.inspect} which is an instance of "\
+                  "#{resource.class}(##{resource.class.object_id})"
         raise ActiveRecord::AssociationTypeMismatch, message
       end
 
@@ -139,7 +139,7 @@ module BelongsToOneOf
       else
         raise InvalidParamsException,
               "possible_resource_types must be an Array or a Hash, " \
-          "received #{raw_possible_resource_types.class}"
+              "received #{raw_possible_resource_types.class}"
       end
     end
 
