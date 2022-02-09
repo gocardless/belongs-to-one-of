@@ -9,7 +9,7 @@ jobs:
         type: string
 
     docker:
-      - image: ruby:<<parameters.ruby-version>>
+      - image: cimg/ruby:<<parameters.ruby-version>>
         environment:
           - RAILS_VERSION=<<parameters.rails-version>>
     steps:
@@ -29,10 +29,10 @@ jobs:
 
   rubocop:
     docker:
-      - image: ruby:2.7
+      - image: cimg/ruby:3.1
     steps:
       - checkout
-      - run: gem install bundler -v 2.1.4
+      - run: gem install bundler -v 2.3.4
       - run: bundle install
       - run:
           name: Rubocop
@@ -45,9 +45,13 @@ workflows:
       - test:
           matrix:
             parameters:
-              ruby-version: ["2.6", "2.7", "3.0"]
-              rails-version: ["5.2", "6.0", "6.1"]
+              ruby-version: ["2.6", "2.7", "3.0", "3.1"]
+              rails-version: ["5.2", "6.0", "6.1", "7.0"]
             exclude:
               - ruby-version: "3.0"
                 rails-version: "5.2"
+              - ruby-version: "3.1"
+                rails-version: "5.2"
+              - ruby-version: "2.6"
+                rails-version: "7.0"
       - rubocop
