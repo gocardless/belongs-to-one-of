@@ -176,3 +176,4 @@ you can add your own logic to determine what goes into the db.
 * Bug reports and pull requests are welcome on GitHub at https://github.com/gocardless/belongs-to-one-of.
 
 GoCardless ♥ open source. If you do too, come [join us](https://gocardless.com/about/careers/).
+test
