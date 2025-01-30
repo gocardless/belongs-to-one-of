@@ -32,22 +32,22 @@ module ActiveRecord
         )
 
         # validators
-        define_method "belongs_to_exactly_one_#{resource_key}" do
+        define_method :"belongs_to_exactly_one_#{resource_key}" do
           config_model.validate_exactly_one_resource(self)
         end
 
-        define_method "belongs_to_at_most_one_#{resource_key}" do
+        define_method :"belongs_to_at_most_one_#{resource_key}" do
           config_model.validate_at_most_one_resource(self)
         end
 
         if include_type_column
-          define_method "#{resource_type_field}_matches_#{resource_key}" do
+          define_method :"#{resource_type_field}_matches_#{resource_key}" do
             config_model.validate_correct_resource_type(self)
           end
         end
 
         # setters
-        define_method "#{resource_key}=" do |resource|
+        define_method :"#{resource_key}=" do |resource|
           config_model.resource_setter(resource, self)
         end
 
@@ -56,12 +56,12 @@ module ActiveRecord
           config_model.resource_getter(self)
         end
 
-        define_method "#{resource_key}_id" do
+        define_method :"#{resource_key}_id" do
           config_model.resource_id_getter(self)
         end
 
         unless include_type_column
-          define_method "#{resource_key}_type" do
+          define_method :"#{resource_key}_type" do
             config_model.resource_type_getter(self)
           end
         end

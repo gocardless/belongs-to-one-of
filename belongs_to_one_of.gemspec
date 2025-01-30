@@ -23,17 +23,9 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.6"
+  spec.required_ruby_version = ">= 3.1"
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "gc_ruboconfig", "~> 2.31.0"
-  spec.add_development_dependency "pry-byebug"
-  spec.add_development_dependency "rspec", "~> 3.9"
-  spec.add_development_dependency "rspec_junit_formatter", "~> 0.4"
-
-  # For integration testing
-  spec.add_development_dependency "sqlite3", "~> 1.4.1"
-
-  spec.add_dependency "activerecord", ">= 5.2", "< 8"
-  spec.add_dependency "activesupport", ">= 5.2", "< 8"
+  spec.add_dependency "activerecord", ">= 7.0", "< 9"
+  spec.add_dependency "activesupport", ">= 7.0", "< 9"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

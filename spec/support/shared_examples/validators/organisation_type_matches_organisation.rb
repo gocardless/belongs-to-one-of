@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples "organisation type matches organisation" do
-|resource_type_field = "organisation_type"|
+RSpec.shared_examples "organisation type matches organisation" do |resource_type_field = "organisation_type"|
   subject(:competitor) { competitor_klass.create(params) }
 
   let(:params) do
