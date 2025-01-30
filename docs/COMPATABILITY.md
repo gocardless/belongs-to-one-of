@@ -1,13 +1,9 @@
 # Compatibility
 
 Our goal as maintainers is for the library to be compatible with all supported
-versions of Ruby.
+versions of CRuby/MRI Ruby listed [here](https://endoflife.date/ruby).
 
-Specifically, any CRuby/MRI version that has not received an End of Life notice
-([e.g. this notice for Ruby 2.1](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/))
-is supported.
-
-To that end, [our build matrix](../.circleci/config.yml) includes all these versions.
+To that end, [our build matrix](../.github/tests.yml) includes all these versions.
 
 Any time BelongsToOneOf doesn't work on a supported version of Ruby, it's a bug, and can be
 reported [here](https://github.com/gocardless/belongs-to-one-of/issues).

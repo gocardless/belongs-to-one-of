@@ -6,7 +6,7 @@ require_relative "../support/shared_examples/setters"
 require_relative "../support/shared_examples/getters"
 require_relative "../support/shared_examples/validators/belongs_to_exactly_one"
 require_relative "../support/shared_examples/validators/belongs_to_at_most_one"
-require_relative "../support/shared_examples/validators/organisation_type_matches_organisation" # rubocop:disable Layout/LineLength
+require_relative "../support/shared_examples/validators/organisation_type_matches_organisation"
 require "pry-byebug"
 
 RSpec.context "Belongs to one of" do

@@ -55,15 +55,15 @@ module BelongsToOneOf
       return if resource.nil?
 
       possible_resource_types.each_key do |resource_type|
-        model.public_send("#{resource_type}=", nil)
+        model.public_send(:"#{resource_type}=", nil)
       end
 
-      model.instance_variable_set("@#{resource_key}", resource)
+      model.instance_variable_set(:"@#{resource_key}", resource)
       resource_type_accessor = find_resource_accessor(resource, model)
 
       unless resource_type_accessor
-        message = "one of #{possible_resource_types.keys.join(', ')} expected, "\
-                  "got #{resource.inspect} which is an instance of "\
+        message = "one of #{possible_resource_types.keys.join(', ')} expected, " \
+                  "got #{resource.inspect} which is an instance of " \
                   "#{resource.class}(##{resource.class.object_id})"
         raise ActiveRecord::AssociationTypeMismatch, message
       end
@@ -132,7 +132,7 @@ module BelongsToOneOf
             raise InvalidParamsException, "expected a symbol, received #{classname}"
           end
 
-          hash[classname] = "#{classname.to_s.underscore}_id".to_sym
+          hash[classname] = :"#{classname.to_s.underscore}_id"
         end
       elsif raw_possible_resource_types.is_a?(Hash)
         raw_possible_resource_types

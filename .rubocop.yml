@@ -1,16 +1,9 @@
-inherit_from: .rubocop_todo.yml
-
 inherit_gem:
   gc_ruboconfig: rubocop.yml
 
 AllCops:
   TargetRubyVersion: 3.1
-
-Style/CaseLikeIf:
-  Enabled: false
+  NewCops: enable
 
 Gemspec/RequiredRubyVersion:
-  Enabled: false
-
-Style/HashSyntax:
   Enabled: false
