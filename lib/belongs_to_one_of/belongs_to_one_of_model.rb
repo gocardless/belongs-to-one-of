@@ -117,7 +117,7 @@ module BelongsToOneOf
         # "inflected" (i.e. Rails knows these objects are the same...)
         #   foo = Foo.find(1)
         #   foo.bar.foo == foo
-        if resource_id_column.to_s.gsub!(/_id$/, "") != resource_type_accessor.to_s
+        if resource_id_column.to_s.gsub(/_id$/, "") != resource_type_accessor.to_s
           opts[:foreign_key] = resource_id_column
         end
 
