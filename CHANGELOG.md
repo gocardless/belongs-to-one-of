@@ -3,7 +3,7 @@
 ## [v1.1.0] - 2025-07-22
 
 - Add support for Ruby 3.5, fix frozen string warnings
-- Drop support for Ruby <= 3.2, Rails <= 7.1
+- Drop support for Ruby 3.1, Rails 7.0
 
 ## [v1.0.0] - 2025-01-30
 
